@@ -11,6 +11,9 @@ DNS URI in the ``x5u`` protected header field. The receiving party uses this
 field for discovering the public key which is used for verifying message
 payload.
 
+Note: Currently, only RSA public keys are supported (RSA-OAEP-256 for
+encryption and RS256 for signing)
+
 .. image:: https://readthedocs.org/projects/dane-jwe-jws/badge/?version=latest
     :target: https://dane-jwe-jws.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status

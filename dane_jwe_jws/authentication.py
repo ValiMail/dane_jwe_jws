@@ -13,6 +13,8 @@ class Authentication:
     def sign(cls, message, private_key, dane_id, header_field="x5u"):
         """Return a signed JWS message.
 
+        The signature algorithm is RS256.
+
         Args:
             message (str): Message to be encapsulated and signed.
             private_key (str): Path to private key in PEM format.

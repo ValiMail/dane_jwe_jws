@@ -32,6 +32,9 @@ class Encryption:
     def encrypt(cls, message, dane_id, header_field="x5u"):
         """Return True if the message signature is valid, otherwise False.
 
+        The public key algorithm is RSA-OAEP-256. The encryption algorithm is
+        A256CBC-HS512.
+
         Args:
             message (str): Message to be encrypted.
             dane_id (str): DANE identity for locating encryption key.
