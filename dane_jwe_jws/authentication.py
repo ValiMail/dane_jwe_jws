@@ -58,7 +58,8 @@ class Authentication:
         jwstoken.deserialize(message)
         print("JWS header: {}".format(json.dumps(jwstoken.jose_header)))
         dns_uri = jwstoken.jose_header[header_field]
-        key = Util.get_pubkey_from_dns(dns_uri)
+        dns_name = Util.get_name_from_dns_uri(dns_uri)
+        key = Util.get_pubkey_from_dns(dns_name)
         jwstoken.verify(key)
         payload = jwstoken.payload
         return payload

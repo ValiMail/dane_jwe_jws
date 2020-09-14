@@ -19,6 +19,10 @@ encryption and RS256 for signing)
     :alt: Documentation Status
 
 
+.. image:: https://circleci.com/gh/ValiMail/dane-jwe-jws.svg?style=shield
+    :target: https://circleci.com/gh/ValiMail/dane-jwe-jws
+
+
 .. image:: https://api.codeclimate.com/v1/badges/8a46b39865a6f88dc31c/maintainability
    :target: https://codeclimate.com/github/ValiMail/dane_jwe_jws/maintainability
    :alt: Maintainability
