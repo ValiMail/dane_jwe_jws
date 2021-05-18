@@ -5,6 +5,7 @@ from unittest.mock import MagicMock
 
 import dane_discovery
 from dane_discovery.dane import DANE
+from dane_discovery.identity import Identity
 from dane_jwe_jws.encryption import Encryption
 
 here_dir = os.path.dirname(os.path.abspath(__file__))
@@ -21,17 +22,37 @@ class TestIntegrationEncryption:
         with open(asset_path, "rb") as asset:
             return asset.read()
 
+    def tlsa_for_cert(self, id_name):
+        """Return a PKIX-CD TLSA record for identity name."""
+        file_name = "{}.cert.pem".format(id_name)
+        file_contents = self.get_dyn_asset(file_name)
+        tlsa = DANE.generate_tlsa_record(4, 0, 0, file_contents)
+        return "name.example.com 123 IN TLSA {}".format(tlsa)
+
+    def generate_identity(self, identity_name):
+        """Return a PKIX-CD Identity object."""
+        mocked = dane_discovery.identity.Identity
+        mocked.set_public_credentials = MagicMock(return_value=[])
+        identity = Identity(identity_name)
+        print("Identity: {}".format(identity_name))
+        tlsa_dict = DANE.process_response(self.tlsa_for_cert(identity_name))
+        print("TLSA: {}".format(tlsa_dict))
+        identity.public_credentials = [identity.process_tlsa(record) for record
+                                       in [tlsa_dict]]
+        identity.dnssec = True
+        identity.tls = True
+        identity.tcp = True
+        return identity
+
     def test_integration_encryption_encrypt_and_decrypt(self):
         """Test encryption and decryption."""
         test_message = "hello world!!"
         prikey_name = "{}.key.pem".format(identity_name)
         prikey_path = os.path.join(dyn_assets_dir, prikey_name)
-        pubkey_name = "{}.cert.pem".format(identity_name)
+        identity = self.generate_identity(identity_name)
+        mocked = identity.get_first_entity_certificate_by_type("PKIX-CD", strict=True)
+        mock_id = dane_discovery.identity.Identity
+        mock_id.get_first_entity_certificate_by_type = MagicMock(return_value=mocked)
         encrypted = Encryption.encrypt(test_message, identity_name)
-        premock = DANE.generate_tlsa_record(3, 0, 0,
-                                            self.get_dyn_asset(pubkey_name))
-        mocked = DANE.process_response(premock)
-        mock_dane = dane_discovery.dane.DANE
-        mock_dane.get_first_leaf_certificate = MagicMock(return_value=mocked)
         decrypted = Encryption.decrypt(encrypted, prikey_path)
         assert decrypted == test_message

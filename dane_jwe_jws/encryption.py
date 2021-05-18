@@ -49,7 +49,7 @@ class Encryption:
         protected_header = {"alg": "RSA-OAEP-256",
                             "enc": "A256CBC-HS512",
                             "typ": "JWE",
-                            "x5u": Util.build_dns_uri(dane_id)}
+                            header_field: Util.build_dns_uri(dane_id)}
         jwetoken = jwe.JWE(message.encode("utf-8"),
                            recipient=pubkey,
                            protected=protected_header)

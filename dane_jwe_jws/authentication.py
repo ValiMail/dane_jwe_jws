@@ -39,11 +39,13 @@ class Authentication:
         return signed
 
     @classmethod
-    def verify(cls, message, header_field="x5u"):
+    def verify(cls, message, strict=True, header_field="x5u"):
         """Return original message if signature checks out, or raise and error.
 
         Args:
             message (str): Serialized JWS message.
+            strict (bool): Fail if unable to authenticate ``PKIX-CD`` certificate 
+                via DNSSEC pr PKI.
             header_field (str): Header field where DANE URI can be found.
                 Defaults to ``x5u``.
 
@@ -56,10 +58,9 @@ class Authentication:
         """
         jwstoken = jws.JWS()
         jwstoken.deserialize(message)
-        print("JWS header: {}".format(json.dumps(jwstoken.jose_header)))
         dns_uri = jwstoken.jose_header[header_field]
         dns_name = Util.get_name_from_dns_uri(dns_uri)
-        key = Util.get_pubkey_from_dns(dns_name)
+        key = Util.get_pubkey_from_dns(dns_name, "PKIX-CD", strict)
         jwstoken.verify(key)
         payload = jwstoken.payload
         return payload
