@@ -37,7 +37,7 @@ setup(name=PROJECT_NAME,
       url="https://github.com/valimail/{}".format(PROJECT_NAME),
       packages=[PROJECT_NAME],
       long_description=build_long_desc(),
-      install_requires=["dane_discovery~=0.1", "jwcrypto~=0.7"],
+      install_requires=["dane_discovery==0.6", "jwcrypto~=0.7"],
       classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",

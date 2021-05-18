@@ -1,7 +1,6 @@
 """General-purpose utilities."""
-import binascii
-
-from dane_discovery.dane import DANE
+"""Utilities found here."""
+from dane_discovery.identity import Identity
 from jwcrypto import jwk
 
 
@@ -42,20 +41,25 @@ class Util:
         return hostname
 
     @classmethod
-    def get_pubkey_from_dns(cls, dns_name):
+    def get_pubkey_from_dns(cls, dns_name, dane_type="PKIX-CD", strict=True):
         """Return JWK from DNS record.
 
         Args:
             dns_name (str): DNS name for locating TLSArr.
+            dane_type (str): ``PKIX-EE``, ``DANE-EE``, or ``PKIX-CD``. This
+                indicates the type of certificate we are interested in retrieving.
+                Defaults to ``PKIX-EE``.
+            strict (bool): Fail if unable to validate certificate using a 
+                signature via DNSSEC (or PKI for PKIX-CD)
 
         Return:
             JWK: Javascript Web Key containing public
                 key retrieved from DNS.
 
         """
-        tlsa = DANE.get_first_leaf_certificate(dns_name)
-        der = binascii.unhexlify(tlsa["certificate_association"])
-        cert_pem = DANE.der_to_pem(der)
+        identity = Identity(dns_name)
+        cert = identity.get_first_entity_certificate_by_type(dane_type, 
+                                                             strict=strict)
         pubkey = jwk.JWK()
-        pubkey.import_from_pem(cert_pem)
+        pubkey.import_from_pyca(cert)
         return pubkey
