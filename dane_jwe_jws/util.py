@@ -61,5 +61,5 @@ class Util:
         cert = identity.get_first_entity_certificate_by_type(dane_type, 
                                                              strict=strict)
         pubkey = jwk.JWK()
-        pubkey.import_from_pyca(cert)
+        pubkey.import_from_pyca(cert.public_key())
         return pubkey
