@@ -31,13 +31,13 @@ class TestIntegrationAuthentication:
 
     def generate_identity(self, identity_name):
         """Return a PKIX-CD Identity object."""
-        mocked = dane_discovery.identity.Identity
-        mocked.set_public_credentials = MagicMock(return_value=[])
+        mocked = Identity
+        mocked.set_dane_credentials = MagicMock(return_value=[])
         identity = Identity(identity_name)
         print("Identity: {}".format(identity_name))
         tlsa_dict = DANE.process_response(self.tlsa_for_cert(identity_name))
         print("TLSA: {}".format(tlsa_dict))
-        identity.public_credentials = [identity.process_tlsa(record) for record
+        identity.dane_credentials = [identity.process_tlsa(record) for record
                                        in [tlsa_dict]]
         identity.dnssec = True
         identity.tls = True
@@ -50,8 +50,8 @@ class TestIntegrationAuthentication:
         prikey_name = "{}.key.pem".format(identity_name)
         prikey_path = os.path.join(dyn_assets_dir, prikey_name)
         identity = self.generate_identity(identity_name)
-        mocked = identity.get_first_entity_certificate_by_type("PKIX-CD", strict=True)
+        mocked = identity.get_first_entity_certificate_by_type("PKIX-CD")
         signed = Authentication.sign(test_message, prikey_path, identity_name)
-        mock_id = dane_discovery.identity.Identity
+        mock_id = Identity
         mock_id.get_first_entity_certificate_by_type = MagicMock(return_value=mocked)
         assert Authentication.verify(signed)
