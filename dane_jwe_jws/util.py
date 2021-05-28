@@ -41,14 +41,15 @@ class Util:
         return hostname
 
     @classmethod
-    def get_pubkey_from_dns(cls, dns_name, dane_type="PKIX-CD", strict=True):
-        """Return JWK from DNS record.
+    def get_pubkey_from_dns(cls, dns_name, dane_type=None, strict=True):
+        """Return JWK for DNS-based identity.
 
         Args:
             dns_name (str): DNS name for locating TLSArr.
             dane_type (str): ``PKIX-EE``, ``DANE-EE``, or ``PKIX-CD``. This
                 indicates the type of certificate we are interested in retrieving.
-                Defaults to ``PKIX-EE``.
+                Defaults to ``None``, which will cause the first entity certificate 
+                to be returned.
             strict (bool): Fail if unable to validate certificate using a 
                 signature via DNSSEC (or PKI for PKIX-CD)
 
@@ -58,8 +59,11 @@ class Util:
 
         """
         identity = Identity(dns_name)
-        cert = identity.get_first_entity_certificate_by_type(dane_type, 
-                                                             strict=strict)
+        if dane_type is not None:
+            cert = identity.get_first_entity_certificate_by_type(dane_type, 
+                                                                 strict=strict)
+        else:
+            cert = identity.get_first_entity_certificate(strict=strict)
         pubkey = jwk.JWK()
         pubkey.import_from_pyca(cert.public_key())
         return pubkey
