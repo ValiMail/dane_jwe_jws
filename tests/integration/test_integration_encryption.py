@@ -37,7 +37,7 @@ class TestIntegrationEncryption:
         print("Identity: {}".format(identity_name))
         tlsa_dict = DANE.process_response(self.tlsa_for_cert(identity_name))
         print("TLSA: {}".format(tlsa_dict))
-        identity.public_credentials = [identity.process_tlsa(record) for record
+        identity.dane_credentials = [identity.process_tlsa(record) for record
                                        in [tlsa_dict]]
         identity.dnssec = True
         identity.tls = True
@@ -50,9 +50,10 @@ class TestIntegrationEncryption:
         prikey_name = "{}.key.pem".format(identity_name)
         prikey_path = os.path.join(dyn_assets_dir, prikey_name)
         identity = self.generate_identity(identity_name)
-        mocked = identity.get_first_entity_certificate_by_type("PKIX-CD", strict=True)
+        identity.report()
+        mocked = identity.get_first_entity_certificate()
         mock_id = dane_discovery.identity.Identity
-        mock_id.get_first_entity_certificate_by_type = MagicMock(return_value=mocked)
+        mock_id.get_first_entity_certificate = MagicMock(return_value=mocked)
         encrypted = Encryption.encrypt(test_message, identity_name)
         decrypted = Encryption.decrypt(encrypted, prikey_path)
         assert decrypted == test_message
