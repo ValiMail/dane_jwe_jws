@@ -2,11 +2,25 @@ Changelog
 =========
 
 
-v0.3
+v0.4
 ----
 
 Changes
 ~~~~~~~
+- Improve flexibility of Utility.get_pubkey_from_dns(). [Ash Wilson]
+
+  Unspecified ``dane_type`` argument for Util.get_pubkey_from_dns()
+  will cause the first entity certificate of any type to be returned.
+
+  Close #7
+
+
+v0.3 (2021-05-19)
+-----------------
+
+Changes
+~~~~~~~
+- Update CHANGELOG.rst. [Ash Wilson]
 - Add strict mode support. [Ash Wilson]
 
   Closes #1
