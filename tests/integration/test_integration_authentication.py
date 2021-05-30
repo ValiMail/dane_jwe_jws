@@ -44,14 +44,14 @@ class TestIntegrationAuthentication:
         identity.tcp = True
         return identity
 
-    def test_integration_authentication_sign_and_verify(self, ):
+    def test_integration_authentication_sign_and_verify(self):
         """Test signing and verification of JWS."""
         test_message = "hello world!!"
         prikey_name = "{}.key.pem".format(identity_name)
         prikey_path = os.path.join(dyn_assets_dir, prikey_name)
         identity = self.generate_identity(identity_name)
-        mocked = identity.get_first_entity_certificate_by_type("PKIX-CD")
+        mocked = identity.get_first_entity_certificate()
         signed = Authentication.sign(test_message, prikey_path, identity_name)
         mock_id = Identity
-        mock_id.get_first_entity_certificate_by_type = MagicMock(return_value=mocked)
+        mock_id.get_first_entity_certificate = MagicMock(return_value=mocked)
         assert Authentication.verify(signed)
