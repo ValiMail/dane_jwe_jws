@@ -60,7 +60,7 @@ class Authentication:
         jws_token.deserialize(message)
         dns_uri = jws_token.jose_header[header_field]
         dns_name = Util.get_name_from_dns_uri(dns_uri)
-        key = Util.get_pubkey_from_dns(dns_name, "PKIX-CD", strict)
+        key = Util.get_pubkey_from_dns(dns_name, strict=strict)
         jws_token.verify(key)
         payload = jws_token.payload
         return payload
