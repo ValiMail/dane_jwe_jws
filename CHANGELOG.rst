@@ -2,8 +2,19 @@ Changelog
 =========
 
 
-v0.4
+v0.5
 ----
+
+Fix
+~~~
+- Fix issue where only PKIX-CD certs were retrieved for authentication.
+  [Ash Wilson]
+
+  Close #9
+
+
+v0.4 (2021-05-28)
+-----------------
 
 Changes
 ~~~~~~~
