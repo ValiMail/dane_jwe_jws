@@ -2,8 +2,20 @@ Changelog
 =========
 
 
-v0.5
+v0.6
 ----
+
+Changes
+~~~~~~~
+- Update dane-discovery pin to v0.14. This update includes changes to
+  the pattern used for forming the PKIXCD CA certificate URL. [Ash
+  Wilson]
+
+  Close #11
+
+
+v0.5 (2021-05-31)
+-----------------
 
 Fix
 ~~~
