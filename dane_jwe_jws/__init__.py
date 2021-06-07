@@ -1,4 +1,4 @@
 """DANE, JWE, JWS for identity-secured messaging."""
 
 __author__ = "Ash Wilson"
-__version__ = "0.6"
+__version__ = "0.7"
