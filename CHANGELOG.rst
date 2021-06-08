@@ -2,8 +2,16 @@ Changelog
 =========
 
 
-v0.7
+v0.8
 ----
+
+Changes
+~~~~~~~
+- Update version pin for dane-discovery to v0.16. [Ash Wilson]
+
+
+v0.7 (2021-06-07)
+-----------------
 - Build(deps): bump dane-discovery from 0.14 to 0.15. [dependabot[bot]]
 
   Bumps [dane-discovery](https://github.com/valimail/dane_discovery) from 0.14 to 0.15.
