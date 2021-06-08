@@ -20,6 +20,8 @@ workflows:
 
 jobs:
   build_and_test:
+    environment:
+      DISTUTILS_DEBUG: "1"
     docker:
       - image: circleci/python:3.8
     steps:
@@ -77,4 +79,5 @@ jobs:
           name: Upload to pypi
           command: |
             pip3 install twine
-            twine upload dist/*
+            twine check --strict dist/*
+            twine upload --verbose dist/*
