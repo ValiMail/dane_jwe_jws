@@ -23,8 +23,7 @@ def get_version():
 
 def build_long_desc():
     """Return the long description of the package."""
-    return "\n".join([get_file_contents(f) for f in ["README.rst",
-                                                     "CHANGELOG.rst"]])
+    return "\n".join([get_file_contents(f) for f in ["README.rst"]])
 
 
 setup(name=PROJECT_NAME,
