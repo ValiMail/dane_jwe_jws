@@ -2,8 +2,48 @@ Changelog
 =========
 
 
-v0.8
+v0.9
 ----
+
+New
+~~~
+- Support PKI with intermediate certificates. [Ash Wilson]
+
+Changes
+~~~~~~~
+- Align tests with reorganized dane-discovery library. [Ash Wilson]
+
+Other
+~~~~~
+- Build(deps): bump dane-discovery from 0.16 to 0.17. [dependabot[bot]]
+
+  Bumps [dane-discovery](https://github.com/valimail/dane_discovery) from 0.16 to 0.17.
+  - [Release notes](https://github.com/valimail/dane_discovery/releases)
+  - [Commits](https://github.com/valimail/dane_discovery/commits)
+
+  ---
+  updated-dependencies:
+  - dependency-name: dane-discovery
+    dependency-type: direct:production
+    update-type: version-update:semver-minor
+  ...
+- Build(deps): update sphinx requirement from ~=4.0 to ~=4.1.
+  [dependabot[bot]]
+
+  Updates the requirements on [sphinx](https://github.com/sphinx-doc/sphinx) to permit the latest version.
+  - [Release notes](https://github.com/sphinx-doc/sphinx/releases)
+  - [Changelog](https://github.com/sphinx-doc/sphinx/blob/4.x/CHANGES)
+  - [Commits](https://github.com/sphinx-doc/sphinx/compare/v4.0.0...v4.1.0)
+
+  ---
+  updated-dependencies:
+  - dependency-name: sphinx
+    dependency-type: direct:production
+  ...
+
+
+v0.8 (2021-06-08)
+-----------------
 
 Changes
 ~~~~~~~
