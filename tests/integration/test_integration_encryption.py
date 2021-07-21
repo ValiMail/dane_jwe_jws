@@ -37,7 +37,7 @@ class TestIntegrationEncryption:
         print("Identity: {}".format(identity_name))
         tlsa_dict = DANE.process_response(self.tlsa_for_cert(identity_name))
         print("TLSA: {}".format(tlsa_dict))
-        identity.dane_credentials = [identity.process_tlsa(record) for record
+        identity.dane_credentials = [DANE.process_tlsa(record) for record
                                        in [tlsa_dict]]
         identity.dnssec = True
         identity.tls = True

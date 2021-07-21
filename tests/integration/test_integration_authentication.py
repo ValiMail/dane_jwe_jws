@@ -3,7 +3,6 @@ import os
 
 from unittest.mock import MagicMock
 
-import dane_discovery
 from dane_discovery.dane import DANE
 from dane_discovery.identity import Identity
 from dane_jwe_jws.authentication import Authentication
@@ -37,7 +36,7 @@ class TestIntegrationAuthentication:
         print("Identity: {}".format(identity_name))
         tlsa_dict = DANE.process_response(self.tlsa_for_cert(identity_name))
         print("TLSA: {}".format(tlsa_dict))
-        identity.dane_credentials = [identity.process_tlsa(record) for record
+        identity.dane_credentials = [DANE.process_tlsa(record) for record
                                        in [tlsa_dict]]
         identity.dnssec = True
         identity.tls = True
