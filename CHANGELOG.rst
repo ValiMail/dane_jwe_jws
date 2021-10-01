@@ -2,8 +2,49 @@ Changelog
 =========
 
 
-v0.9
-----
+v0.10 (2021-10-01)
+------------------
+- Build(deps): bump dane-discovery from 0.17 to 0.18. [dependabot[bot]]
+
+  Bumps [dane-discovery](https://github.com/valimail/dane_discovery) from 0.17 to 0.18.
+  - [Release notes](https://github.com/valimail/dane_discovery/releases)
+  - [Commits](https://github.com/valimail/dane_discovery/commits)
+
+  ---
+  updated-dependencies:
+  - dependency-name: dane-discovery
+    dependency-type: direct:production
+    update-type: version-update:semver-minor
+  ...
+- Build(deps): update sphinx requirement from ~=4.1 to ~=4.2.
+  [dependabot[bot]]
+
+  Updates the requirements on [sphinx](https://github.com/sphinx-doc/sphinx) to permit the latest version.
+  - [Release notes](https://github.com/sphinx-doc/sphinx/releases)
+  - [Changelog](https://github.com/sphinx-doc/sphinx/blob/4.x/CHANGES)
+  - [Commits](https://github.com/sphinx-doc/sphinx/compare/v4.1.0...v4.2.0)
+
+  ---
+  updated-dependencies:
+  - dependency-name: sphinx
+    dependency-type: direct:production
+  ...
+- Build(deps): update jwcrypto requirement from ~=0.7 to >=0.7,<2.0.
+  [dependabot[bot]]
+
+  Updates the requirements on [jwcrypto](https://github.com/latchset/jwcrypto) to permit the latest version.
+  - [Release notes](https://github.com/latchset/jwcrypto/releases)
+  - [Commits](https://github.com/latchset/jwcrypto/compare/v0.7.0...v1.0.0)
+
+  ---
+  updated-dependencies:
+  - dependency-name: jwcrypto
+    dependency-type: direct:production
+  ...
+
+
+v0.9 (2021-07-21)
+-----------------
 
 New
 ~~~
@@ -11,6 +52,7 @@ New
 
 Changes
 ~~~~~~~
+- Update CHANGELOG.rst. [Ash Wilson]
 - Align tests with reorganized dane-discovery library. [Ash Wilson]
 
 Other
