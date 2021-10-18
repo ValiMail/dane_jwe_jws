@@ -37,7 +37,7 @@ setup(name=PROJECT_NAME,
       packages=[PROJECT_NAME],
       long_description=build_long_desc(),
       long_description_content_type="text/x-rst",
-      install_requires=["dane_discovery==0.18", 
+      install_requires=["dane_discovery==0.19", 
                         "jwcrypto>=0.7,<2.0"],
       classifiers=[
         "Development Status :: 4 - Beta",
