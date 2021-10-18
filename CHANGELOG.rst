@@ -2,8 +2,44 @@ Changelog
 =========
 
 
+v0.11
+-----
+- Build(deps): bump dane-discovery from 0.18 to 0.19. [dependabot[bot]]
+
+  Bumps [dane-discovery](https://github.com/valimail/dane_discovery) from 0.18 to 0.19.
+  - [Release notes](https://github.com/valimail/dane_discovery/releases)
+  - [Commits](https://github.com/valimail/dane_discovery/commits)
+
+  ---
+  updated-dependencies:
+  - dependency-name: dane-discovery
+    dependency-type: direct:production
+    update-type: version-update:semver-minor
+  ...
+- Build(deps): update pytest-cov requirement from ~=2.12 to ~=3.0.
+  [dependabot[bot]]
+
+  Updates the requirements on [pytest-cov](https://github.com/pytest-dev/pytest-cov) to permit the latest version.
+  - [Release notes](https://github.com/pytest-dev/pytest-cov/releases)
+  - [Changelog](https://github.com/pytest-dev/pytest-cov/blob/master/CHANGELOG.rst)
+  - [Commits](https://github.com/pytest-dev/pytest-cov/compare/v2.12.0...v3.0.0)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pytest-cov
+    dependency-type: direct:production
+  ...
+
+
 v0.10 (2021-10-01)
 ------------------
+
+Changes
+~~~~~~~
+- Increment minor version, update CHANGELOG.rst. [Ash Wilson]
+
+Other
+~~~~~
 - Build(deps): bump dane-discovery from 0.17 to 0.18. [dependabot[bot]]
 
   Bumps [dane-discovery](https://github.com/valimail/dane_discovery) from 0.17 to 0.18.
