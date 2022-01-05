@@ -2,8 +2,37 @@ Changelog
 =========
 
 
-v0.11
+v0.12
 -----
+- Build(deps): bump dane-discovery from 0.19 to 0.20. [dependabot[bot]]
+
+  Bumps [dane-discovery](https://github.com/valimail/dane_discovery) from 0.19 to 0.20.
+  - [Release notes](https://github.com/valimail/dane_discovery/releases)
+  - [Commits](https://github.com/valimail/dane_discovery/commits)
+
+  ---
+  updated-dependencies:
+  - dependency-name: dane-discovery
+    dependency-type: direct:production
+    update-type: version-update:semver-minor
+  ...
+- Build(deps): update sphinx requirement from ~=4.2 to ~=4.3.
+  [dependabot[bot]]
+
+  Updates the requirements on [sphinx](https://github.com/sphinx-doc/sphinx) to permit the latest version.
+  - [Release notes](https://github.com/sphinx-doc/sphinx/releases)
+  - [Changelog](https://github.com/sphinx-doc/sphinx/blob/4.x/CHANGES)
+  - [Commits](https://github.com/sphinx-doc/sphinx/compare/v4.2.0...v4.3.0)
+
+  ---
+  updated-dependencies:
+  - dependency-name: sphinx
+    dependency-type: direct:production
+  ...
+
+
+v0.11 (2021-10-18)
+------------------
 - Build(deps): bump dane-discovery from 0.18 to 0.19. [dependabot[bot]]
 
   Bumps [dane-discovery](https://github.com/valimail/dane_discovery) from 0.18 to 0.19.
