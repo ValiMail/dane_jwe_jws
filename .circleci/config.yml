@@ -23,7 +23,7 @@ jobs:
     environment:
       DISTUTILS_DEBUG: "1"
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3
     steps:
       - checkout
       - run:
@@ -61,7 +61,7 @@ jobs:
             curl -X POST -d "branches=${CIRCLE_BRANCH}" -d "token=${RTD_TOKEN}" ${RTD_URL}
   deploy:
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3
     steps:
       - checkout
       - run:
