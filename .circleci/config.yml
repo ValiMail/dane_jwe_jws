@@ -23,7 +23,7 @@ jobs:
     environment:
       DISTUTILS_DEBUG: "1"
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3.8
     steps:
       - checkout
       - run:
@@ -45,7 +45,7 @@ jobs:
             pip3 install -r requirements-test.txt
             pip3 install .
             ./cc-test-reporter before-build
-            python3 -m py.test --cov=dane_jwe_jws --cov-report=xml --cov-report=term-missing
+            python3 -m pytest --cov=dane_jwe_jws --cov-report=xml --cov-report=term-missing
             ./cc-test-reporter format-coverage -t coverage.py ./coverage.xml
             ./cc-test-reporter upload-coverage
             ./cc-test-reporter after-build --exit-code $?
@@ -61,7 +61,7 @@ jobs:
             curl -X POST -d "branches=${CIRCLE_BRANCH}" -d "token=${RTD_TOKEN}" ${RTD_URL}
   deploy:
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3.8
     steps:
       - checkout
       - run:
